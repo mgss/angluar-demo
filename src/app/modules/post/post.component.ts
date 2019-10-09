@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Post } from './models/post.model';
+import { PostService } from './services/post.service';
 
 @Component({
   selector: 'app-post',
@@ -7,24 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
   title = 'Posts';
-  entities = [
-    {
-      title: 'hello',
-      body:
-        'Sit do ullamco incididunt irure veniam sint exercitation proident.',
-    },
-    { title: 'hola', body: 'Culpa Lorem in qui ad aliqua cupidatat.' },
-    { title: '您好' },
-  ];
+  entities = Post[0];
 
-  constructor() {}
+  constructor(private postService: PostService) {
+    this.entities = this.postService.index();
+  }
 
   ngOnInit() {}
 
-  removeItem(item: number) {
+  removeItem(item: Post) {
     console.log('remove...');
-    this.entities = this.entities.filter((entity, index) => {
-      return index !== item;
+    this.entities = this.entities.filter(entity => {
+      return entity.id !== item.id;
     });
   }
 }
