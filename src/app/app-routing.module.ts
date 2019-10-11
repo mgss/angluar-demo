@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PostComponent } from './modules/post/post.component';
-import { PostDetaileComponent } from './modules/post/components/post-detaile/post-detaile.component';
-import { RegisterComponent } from './modules/user/component/register/register.component';
+import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
+import { MessageBoxComponent } from './core/components/message-box/message-box.component';
 
 const routes: Routes = [
-  { path: 'posts', component: PostComponent },
-  { path: 'posts/:id', component: PostDetaileComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: '', redirectTo: '/posts', pathMatch: 'full' }, // 重定向路由
+  { path: '**', component: PageNotFoundComponent }, // 通配符路由
+  { path: 'message', component: MessageBoxComponent, outlet: 'popup' },
 ];
 
 @NgModule({
