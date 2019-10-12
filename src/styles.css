@@ -39,7 +39,7 @@ label {
   font-weight: bold;
 }
 
-button[type='submit'] {
+button {
   border: none;
   background: #000;
   color: #fff;
